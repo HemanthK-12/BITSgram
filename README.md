@@ -7,7 +7,7 @@ This project is a collective effort, contributed to by myself and four of my fri
 
 - [Mohammad Jambughodawala](https://github.com/Mohammadjam19)
 - [Vaishnav Devaguptapu](https://github.com/vaisour19)
-- [Anshul Gopal](https://github.com/friend3)
+- [Anshul Gopal](https://github.com/Gopu-OP)
 - [Harsh Vikram Jajodia](https://github.com/harshjajodia)
 
 We are grateful for the opportunity to work together on this project and hope you find it as enjoyable and useful as we do. If you have any questions or feedback, please feel free to reach out to us. We would be happy to hear from you!
