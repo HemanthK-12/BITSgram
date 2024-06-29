@@ -1,0 +1,138 @@
+{% load attr_filter %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database Table</title>
+  <style>
+    body{
+        background-color:#E0F4FF
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div style="text-align:center">
+    <nav>
+        <a href="admin" target="_blank">Admin Page</a>
+        <br>
+    </nav>
+    <form method="GET" action=".">
+        <input type="search" name="query" placeholder="Search">
+        <input type="submit" value="Search!">
+        
+    </form>
+  </div>
+  {% if query == "users" %}
+  <h1>Table 1:Users</h1>
+  <table>
+    <thead>
+        <tr>
+            {% for i in user_attributes %}<!--This is Django template language-->
+                <th>{{i}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in users %}
+            <tr>
+                {% for i in user_attributes %}
+                    <td>{{ c|get_attr:i }}</td><!--For this ,refer to the attr_filter.py file in templatetags folder-->
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  {%elif query == "likes" %}
+  <h1>Table 2:Likes</h1>
+  <table>
+    <thead>
+        <tr>
+            {% for i in like_attributes %}<!--This is Django template language-->
+                <th>{{i}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in likes %}
+            <tr>
+                {% for i in like_attributes %}
+                    <td>{{ c|get_attr:i }}</td><!--For this ,refer to the attr_filter.py file in templatetags folder-->
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  {%elif query == "posts"%}
+  <h1>Table 3:Posts</h1>
+  <table>
+    <thead>
+        <tr>
+            {% for i in post_attributes %}<!--This is Django template language-->
+                <th>{{i}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in posts %}
+            <tr>
+                {% for i in post_attributes %}
+                    <td>{{ c|get_attr:i }}</td><!--For this ,refer to the attr_filter.py file in templatetags folder-->
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  {%elif query == "comments" %}
+  <h1>Table 2:Comments</h1>
+  <table>
+    <thead>
+        <tr>
+            {% for i in comment_attributes %}<!--This is Django template language-->
+                <th>{{i}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in comments %}
+            <tr>
+                {% for i in comment_attributes %}
+                    <td>{{ c|get_attr:i }}</td><!--For this ,refer to the attr_filter.py file in templatetags folder-->
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  {%elif query == "notifications" %}
+  <h1>Table 2:Notifications</h1>
+  <table>
+    <thead>
+        <tr>
+            {% for i in notification_attributes %}<!--This is Django template language-->
+                <th>{{i}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in notificationss %}
+            <tr>
+                {% for i in notification_attributes %}
+                    <td>{{ c|get_attr:i }}</td><!--For this ,refer to the attr_filter.py file in templatetags folder-->
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  {%else%}
+  {%endif%}
+
+</body>
+</html>
