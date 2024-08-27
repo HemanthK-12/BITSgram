@@ -82,7 +82,7 @@ DATABASES = {
         'USER': 'root',
         'HOST': 'localhost',
         'PORT': '3306',
-        'PASSWORD': 'Karthik@@@12',
+        'PASSWORD': 'DATABASE_PASS',
     }
 }
 STATIC_URL = '/static/'
