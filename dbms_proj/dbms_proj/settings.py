@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--890*7eymmm0i^9%s(7!*p1h0o-%b=y$e!z&ww7i+ncd#e-v&m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']#For CORS
 
 
 # Application definition
@@ -78,13 +78,23 @@ WSGI_APPLICATION = 'dbms_proj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'socialmedia',
-        'USER': 'root',
-        'HOST': 'localhost',
+        'NAME': 'bitsgram',
+        'USER': 'bitsuser',
+        'PASSWORD': 'bitspass',
+        'HOST': 'db',  # Service name from docker-compose
         'PORT': '3306',
-        'PASSWORD': 'DATABASE_PASS',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'bitsgram',
+#         'USER': 'root',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'PASSWORD': 'DATABASE_PASS',
+#     }
+# }
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 JAZZMIN_SETTINGS={

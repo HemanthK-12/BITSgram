@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunSQL("""
-        CREATE TRIGGER update_hash_password_trigger1
+        CREATE TRIGGER IF NOT EXISTS update_hash_password_trigger1
         BEFORE UPDATE ON user
         FOR EACH ROW
         BEGIN

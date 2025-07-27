@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
          migrations.RunSQL("""
-            CREATE TRIGGER update_email_trigger
+            CREATE TRIGGER IF NOT EXISTS update_email_trigger
             BEFORE UPDATE ON user
             FOR EACH ROW
             BEGIN

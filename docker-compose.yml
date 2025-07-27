@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: bitsgram
+      MYSQL_USER: bitsuser
+      MYSQL_PASSWORD: bitspass
+      MYSQL_ROOT_PASSWORD: rootpass
+    command: --log-bin-trust-function-creators=1 --skip-log-bin
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./bitsgram_socialmedia:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  web:
+    build: .
+    environment:
+      - DB_HOST=db
+      - DB_NAME=bitsgram
+      - DB_USER=bitsuser
+      - DB_PASSWORD=bitspass
+      - DJANGO_SUPERUSER_USERNAME=hello
+      - DJANGO_SUPERUSER_EMAIL=admin@gmail.com
+      - DJANGO_SUPERUSER_PASSWORD=hello
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "
+        echo 'Waiting for database...' &&
+        while ! mysqladmin ping -h db -u bitsuser -pbitspass --silent; do
+          echo 'Database not ready, waiting...'
+          sleep 2
+        done &&
+        echo 'Database is ready!' &&
+        python manage.py migrate &&
+        python manage.py createsuperuser --noinput || true &&
+        python manage.py runserver 0.0.0.0:8000
+      "
+
+volumes:
+  db_data:
